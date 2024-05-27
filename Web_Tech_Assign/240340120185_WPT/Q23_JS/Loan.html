@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./Loan.css" />
+    <script src="./Loan.js"></script>
+  </head>
+  <body>
+    <div class="form">
+      <form>
+        <strong>Loan Information</strong>
+        <div>
+          <span>
+            <label for="amount"
+              >1. Amount of the Loan (any currency) :</label
+            ></span
+          >
+          <span><input type="text" id="amount" /> </span>
+        </div>
+        <div>
+          <span>
+            <label for="interest"
+              >2. Annual Percentage rate of interest :</label
+            ></span
+          >
+          <span><input type="text" id="interest" /> </span>
+        </div>
+        <div>
+          <span> <label for="year">3. Repayment period in years :</label></span>
+          <span><input type="text" id="year" /></span>
+        </div>
+        <div class="btn">
+          <button type="button" onclick="calculateLoan()">Compute</button>
+          <strong>Payment Information</strong>
+        </div>
+      </form>
+      <div>
+        <span> <label for="emi">4. Your monthly payment will be :</label></span>
+        <span><input type="text" id="emi" readonly /> </span>
+      </div>
+      <div>
+        <span> <label for="total">5. Your total payment will be :</label></span>
+        <span><input type="text" id="total" readonly /> </span>
+      </div>
+      <div>
+        <span>
+          <label for="int"
+            >6. Your total interest payment will be :</label
+          ></span
+        >
+        <span><input type="text" id="int" readonly /> </span>
+      </div>
+    </div>
+  </body>
+</html>

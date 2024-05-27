@@ -1,0 +1,6 @@
+rollNo: name: Maks_hindi: Marks_math: Marks_::phy:
+1: Rahul: 78: 89: 90
+2: abhineet: 89: 85: 77
+3: Shiv: 99: 80: 89
+4: Vedika: 90: 78: 87
+5: Vaishnavi: 96: 87: 86

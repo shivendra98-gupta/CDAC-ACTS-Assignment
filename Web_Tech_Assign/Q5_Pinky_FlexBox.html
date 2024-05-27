@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+        .form-control {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            flex-wrap: wrap;
+            flex-direction: row;
+            align-content: flex-start;
+
+        }
+
+        .item {
+            width: 50%;
+            background-color: rgb(255, 165, 195);
+            border: 2px solid #000000;
+            box-sizing: border-box;
+            padding: 3px;
+            vertical-align: middle;
+            align-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="form-control">
+        <div class="item">Name</div>
+        <div class="item"><input type="text" autofocus /></div>
+
+        <div class="item">Employee Code</div>
+        <div class="item"><input type="text"></div>
+        
+        <div class="item">Department</div>
+        <div class="item">
+            <p><input type="radio" name="radio">ADMIN</p>
+            <p><input type="radio" name="radio">HR</p>
+            <p><input type="radio" name="radio">TECHNICAL</p>
+            <p><input type="radio" name="radio">ACCOUNTS</p>
+        </div>
+        
+        <div class="item">Date of Joining</div>
+        <div class="item"><input type="text" size="1px" style="margin-top: 15px;">/<input type="text" size="1px">/<input type="text"size="1px">
+            <p>dd &emsp13; mm &emsp13; yyyy</p>
+        </div>
+
+
+        <div class="item">Employee Code</div>
+        <div class="item"><input type="text"></div>
+
+    </div>
+
+    </div>
+</body>
+
+</html>

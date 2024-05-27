@@ -1,0 +1,277 @@
+Ques 1.
+Create a new column which states that where the students got first class of
+not?
+
+mysql> select * from student4;
++------+-----------------+-------+-------+------+
+| roll | name            | class | marks | age  |
++------+-----------------+-------+-------+------+
+|    1 | Akshay Kumar    | 10th  |    85 |   16 |
+|    2 | Shraddha Kapoor | 10th  |    90 |   16 |
+|    3 | Honey Singh     | 11th  |    88 |   17 |
+|    4 | Rajmouli        | 11th  |    92 |   17 |
+|    5 | Rajnikanth      | 12th  |    95 |   18 |
+|    6 | Allu Arjun      | 12th  |    98 |   18 |
+|    7 | Kiara Advani    | 11th  |    88 |   17 |
++------+-----------------+-------+-------+------+
+7 rows in set (0.00 sec)
+
+mysql> SELECT marks AS first_class FROM student4 WHERE marks > 90;
++-------------+
+| first_class |
++-------------+
+|          92 |
+|          95 |
+|          98 |
++-------------+
+3 rows in set (0.00 sec)
+
+Q2.
+Create a new column which states that grade of the students:
+1) > 75: A+ grade
+2) > 60: A grade
+3) > 55: B+ grade
+4) > 50: B grade
+5) > 40: C grade
+6) < 40: D grade
+
+
+ALTER TABLE student4 ADD COLUMN grade VARCHAR(4);
+
+mysql> UPDATE student4
+    -> SET grade = CASE 
+    ->     WHEN marks > 75 THEN 'A+'
+    ->     WHEN marks > 60 THEN 'A'
+    ->     WHEN marks > 55 THEN 'B+'
+    ->     WHEN marks > 50 THEN 'B'
+    ->     WHEN marks > 40 THEN 'C'
+    ->     ELSE 'D'
+    -> END;
+Query OK, 7 rows affected (0.01 sec)
+Rows matched: 7  Changed: 7  Warnings: 0
+
+mysql> select * from student4;
++------+-----------------+-------+-------+------+-------+
+| roll | name            | class | marks | age  | grade |
++------+-----------------+-------+-------+------+-------+
+|    1 | Akshay Kumar    | 10th  |    70 |   16 | A     |
+|    2 | Shraddha Kapoor | 10th  |    45 |   16 | C     |
+|    3 | Honey Singh     | 11th  |    90 |   17 | A+    |
+|    4 | Rajmouli        | 11th  |    82 |   17 | A+    |
+|    5 | Rajnikanth      | 12th  |    63 |   18 | A     |
+|    6 | Allu Arjun      | 12th  |    98 |   18 | A+    |
+|    7 | Kiara Advani    | 11th  |    88 |   17 | A+    |
++------+-----------------+-------+-------+------+-------+
+7 rows in set (0.00 sec)
+
+
+
+
+Q3 ) 
+
+
+
+
+
+DELIMITER &&
+CREATE PROCEDURE proc_naturalNum(IN v_last INT ,OUT p_sum INT)
+BEGIN
+	 DECLARE v_numb int;
+	 DECLARE v_sumation INT;
+	 SET v_sumation = 0;
+	 SET v_numb = 1;
+	 myloop : LOOP
+	 	 SET v_sumation = v_sumation + v_numb;
+	 	 SET v_numb = v_numb + 1;
+	 	 IF v_numb>v_last
+	 	 THEN
+	 	 	LEAVE myloop;
+	 	 ELSE
+	 	 	ITERATE myloop;
+	 	 END IF;
+	 END LOOP;
+	 SELECT v_sumation;	 	 
+	 	 	
+END &&
+DELIMITER ;
+
+
+mysql> DELIMITER ;
+mysql> DELIMITER &&
+mysql> CREATE PROCEDURE naturalNum(OUT p_sum INT)
+    -> BEGIN
+    ->  DECLARE v_numb int;
+    ->  DECLARE v_sumation INT;
+    ->  SET v_sumation = 0;
+    ->  SET v_numb = 1;
+    ->  myloop : LOOP
+    ->   SET v_sumation = v_sumation + v_numb;
+    ->   SET v_numb = v_numb + 1;
+    ->   IF v_numb>10
+    ->   THEN
+    ->   LEAVE myloop;
+    ->   ELSE
+    ->   ITERATE myloop;
+    ->   END IF;
+    ->  END LOOP;
+    ->  SELECT v_sumation;  
+    ->   
+    -> END &&
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> DELIMITER ;
+mysql> call naturalNum(@p_sum);
++------------+
+| v_sumation |
++------------+
+|         55 |
++------------+
+1 row in set (0.00 sec)
+
+
+
+
+Q4)
+
+DELIMITER ##
+CREATE PROCEDURE proc_evenodd ( IN p_num INT ,OUT p_ans VARCHAR(50))
+BEGIN
+	 IF(p_num = 0 ) THEN
+	  set p_ans = "NUMBER IS NIETHER EVEN NOR ODD";
+	 ELSEIF(p_num % 2 = 0) THEN
+	  set p_ans = "NUMBER IS EVEN";
+	 ELSE
+	  set p_ans = "NUMBER IS ODD";
+	 END IF;
+	 SELECT p_ans;
+END ## 
+DELIMITER ;
+
+mysql> DELIMITER ##
+mysql> CREATE PROCEDURE proc_evenodd ( IN p_num INT ,OUT p_ans VARCHAR(50))
+    -> BEGIN
+    ->  IF(p_num = 0 ) THEN
+    ->   set p_ans = "NUMBER IS NIETHER EVEN NOR ODD";
+    ->  ELSEIF(p_num % 2 = 0) THEN
+    ->   set p_ans = "NUMBER IS EVEN";
+    ->  ELSE
+    ->   set p_ans = "NUMBER IS ODD";
+    ->  END IF;
+    ->  SELECT p_ans;
+    -> END ## 
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> DELIMITER ;
+mysql> call proc_evenodd(22, @a);
++----------------+
+| p_ans          |
++----------------+
+| NUMBER IS EVEN |
++----------------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> call proc_evenodd(21, @a);
++---------------+
+| p_ans         |
++---------------+
+| NUMBER IS ODD |
++---------------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> call proc_evenodd(0, @a);
++--------------------------------+
+| p_ans                          |
++--------------------------------+
+| NUMBER IS NIETHER EVEN NOR ODD |
++--------------------------------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> 
+
+
+
+Q5)
+
+DELIMITER ##
+CREATE PROCEDURE proc_Grade( IN marks INT , OUT p_ans VARCHAR(30))
+BEGIN
+	
+	IF(marks > 75) THEN 
+	 set p_ans  = "A+";
+	ELSEIF(marks < 75 AND marks > 60) THEN
+	 set p_ans = "A";
+	ELSEIF(marks < 60 AND marks > 55) THEN
+	 set p_ans = "B+";
+	ELSEIF(marks < 55 AND marks > 50) THEN
+	 set p_ans = "B";
+	ELSEIF(marks < 50 AND marks > 40) THEN
+	 set p_ans = "C";
+	ELSE 
+	 set p_ans = "D";
+	END IF;
+	SELECT p_ans;
+	
+END ## 
+DELIMITER ;
+
+mysql> DELIMITER ##
+mysql> CREATE PROCEDURE proc_Grade( IN marks INT , OUT p_ans VARCHAR(30))
+    -> BEGIN
+    -> 
+    -> IF(marks > 75) THEN 
+    ->  set p_ans  = "A+";
+    -> ELSEIF(marks < 75 AND marks > 60) THEN
+    ->  set p_ans = "A";
+    -> ELSEIF(marks < 60 AND marks > 55) THEN
+    ->  set p_ans = "B+";
+    -> ELSEIF(marks < 55 AND marks > 50) THEN
+    ->  set p_ans = "B";
+    -> ELSEIF(marks < 50 AND marks > 40) THEN
+    ->  set p_ans = "C";
+    -> ELSE 
+    ->  set p_ans = "D";
+    -> END IF;
+    -> SELECT p_ans;
+    -> 
+    -> END ## 
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> DELIMITER ;
+mysql> call proc_Grade(66,@);
++-------+
+| p_ans |
++-------+
+| A     |
++-------+
+1 row in set (0.00 sec)
+
+ERROR 3061 (42000): User variable name '' is illegal
+mysql> call proc_Grade(66,@a);
++-------+
+| p_ans |
++-------+
+| A     |
++-------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> call proc_Grade(86,@a);
++-------+
+| p_ans |
++-------+
+| A+    |
++-------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+
+
+

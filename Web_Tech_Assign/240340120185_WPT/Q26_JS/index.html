@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <script src="./index.js"></script>
+    <link rel="stylesheet" href="./index.css" />
+</head>
+
+<body>
+    <div>
+        <form>
+            <div>
+                <span><label for="name">Name :</label></span>
+                <span><input type="text" id="name" class="name" /></span>
+                <span id="nameerr"></span>
+            </div>
+            <div>
+                <span><label for="email">Email :</label></span>
+                <span><input type="text" id="email" class="email" /></span>
+                <span id="emailerr"></span>
+            </div>
+            <div>
+                <span><label for="cemail">Confirm Email :</label></span>
+                <span><input type="text" id="cemail" class="cemail" /></span>
+                <span id="cemailerr"></span>
+            </div>
+            <div>
+                <span><label for="dob">Date of Birth :</label></span>
+                <span><input type="date" id="dob" class="dob" /></span>
+                <span id="doberr"></span>
+            </div>
+            <div>
+                <span><label>Gender :</label></span>
+                <span><input type="radio" id="male" name="gender" value="Male" /><label for="male">Male</label>
+                    <input type="radio" id="female" name="gender" value="Female" />
+                    <label for="female">Female</label>
+                </span>
+                <span id="gendererr"></span>
+            </div>
+            <div>
+                <span><label for="luck">Lucky Number :</label></span>
+                <span><input type="number" id="luck" class="luck" /></span>
+                <span id="luckerr"></span>
+            </div>
+            <div>
+                <span><label>Favorite Food :</label></span>
+                <span><input type="checkbox" id="pizza" name="food" value="Pizza" /><label for="pizza">Pizza</label><br>
+                    <input type="checkbox" id="pasta" name="food" value="Pasta" /><label for="pasta">Pasta</label><br>
+                    <input type="checkbox" id="chinese" name="food" value="Chinese" /><label
+                        for="chinese">Chinese</label></span>
+                <span id="fooderr"></span>
+            </div>
+            <div>
+                <button type="button" onclick="validateCredential()">
+                    Send Data
+                </button>
+            </div>
+            <div id="result"></div>
+        </form>
+    </div>
+</body>
+
+</html>

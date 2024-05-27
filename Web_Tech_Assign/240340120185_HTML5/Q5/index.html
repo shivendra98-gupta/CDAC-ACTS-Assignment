@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        table{
+            background-color: lightpink;
+            border-collapse: collapse;
+            font-size: 30px;
+        }
+        #name{
+            height: 25px;
+        }
+        #emp{
+            width: 50px;
+            height: 25px;
+        }
+        input[name="date"]{
+            width: 60px;
+            height: 25px;
+        }
+        table, td{
+            border: 2px solid black;
+        }
+        pre{
+            display: inline;
+            font-size: 25px;
+        }
+    </style>
+</head>
+<body>
+    <center>
+    <table>
+        <tbody>
+            <tr>
+                <td><label for="name">Name</label></td>
+                <td><input type="text" name="nm" id="name"/></td>
+            </tr>
+            <tr>
+                <td><label for="emp">Employee</label></td>
+                <td><input type="text" name="emp" id="emp"/></td>
+            </tr>
+            <tr>
+                <td>Department</td>
+                <td><input type="radio" name="dept" id="admin" value="Admin"/> 
+                    <label for="admin">ADMIN</label> <br>
+                    <input type="radio" name="dept" id="hr" value="HR"/>
+                    <label for="hr">HR</label> <br>
+                    <input type="radio" name="dept" id="tech" value="Technical"/>
+                    <label for="tech">TECHNICAL</label> <br>
+                    <input type="radio" name="dept" id="acc" value="Accounts"/>
+                    <label for="acc">ACCOUNTS</label> <br>
+                </td>
+            </tr>
+            <tr>
+                <td>Date of Joining</td>
+                <td><input type="text" name="date" id="dd"/> <pre>/</pre>
+                <input type="text" name="date" id="mm"/> <pre>/</pre>
+                <input type="text" name="date" id="yyyy"/><br>
+                &nbsp;&nbsp;<label for="dd">dd</label>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label for="mon">mm</label>
+                &nbsp;&nbsp;&nbsp;&nbsp;<label for="yyyy">yyyy</label>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="addr">Address</label></td>
+                <td><textarea name="addr" id="addr" rows="5" cols="50"></textarea></td>
+            </tr>
+            <tr>
+                <td>Training Program Attended</td>
+                <td><input type="checkbox" name="Program" id="html">
+                <label for="html">HTML/DHTML</label> <br>
+                <input type="checkbox" name="Program" id="java">
+                <label for="java">JAVA</label> <br>
+                <input type="checkbox" name="Program" id="cl">
+                <label for="cl">CLIENT/SERVER</label> <br>
+                <input type="checkbox" name="Program" id="net">
+                <label for="net">.NET</label> 
+                </td>
+            </tr>
+            <tr>
+                <td>Traning Programmes need to attend &nbsp;</td> &nbsp;
+                <td>
+                    <select name="prog" id="prog" size="2" multiselect>
+                        <option value="JAVASCRIPT">JAVASCRIPT</option>
+                        <option value="JSTRUCTS">JSTRUCTS</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Send the information at</td>
+                <td><a href="mailto:ayush9kumar9@gmail.com">ayush9kumar9@gmail.com</a></td>
+            </tr>
+            
+        </tbody>
+    </table>
+</center>
+</body>
+</html>

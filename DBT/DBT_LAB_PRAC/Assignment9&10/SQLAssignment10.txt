@@ -1,0 +1,364 @@
+Q1)
+
+DELIMITER //
+CREATE PROCEDURE proc_factorial(IN p_num INT)
+BEGIN
+DECLARE v_fact INT DEFAULT 1;
+REPEAT 
+	SET v_fact = v_fact * p_num;
+	SET p_num = p_num - 1;
+UNTIL p_num < 1
+END REPEAT;
+SELECT v_fact AS FACTORIAL;
+END //
+DELIMITER ;
+
+
+mysql> DELIMITER //
+mysql> CREATE PROCEDURE proc_factorial(IN p_num INT)
+    -> BEGIN
+    -> DECLARE v_fact INT DEFAULT 1;
+    -> REPEAT 
+    -> SET v_fact = v_fact * p_num;
+    -> SET p_num = p_num - 1;
+    -> UNTIL p_num < 1
+    -> END REPEAT;
+    -> SELECT v_fact AS FACTORIAL;
+    -> END //
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> DELIMITER ;
+mysql> call proc_factorial(6);
++-----------+
+| FACTORIAL |
++-----------+
+|       720 |
++-----------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> call proc_factorial(4);
++-----------+
+| FACTORIAL |
++-----------+
+|        24 |
++-----------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> call proc_factorial(10);
++-----------+
+| FACTORIAL |
++-----------+
+|   3628800 |
++-----------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+
+Q2)
+
+DELIMITER ##
+CREATE PROCEDURE proc_SumofDigits(IN p_num INT)
+BEGIN
+	DECLARE v_sum INT DEFAULT 0;
+	DECLARE v_rem INT;
+	WHILE(p_num > 0) DO 
+	 set v_rem = p_num % 10;
+	 set v_sum = v_sum + v_rem;
+	 set p_num = p_num DIV 10;
+	END WHILE;
+	SELECT v_sum AS "SUM OF DIGIT";
+END ##
+DELIMITER ;
+
+
+mysql> DELIMITER ##
+mysql> CREATE PROCEDURE proc_SumofDigits(IN p_num INT)
+    -> BEGIN
+    -> DECLARE v_sum INT DEFAULT 0;
+    -> DECLARE v_rem INT;
+    -> WHILE(p_num > 0) DO 
+    ->  set v_rem = p_num % 10;
+    ->  set v_sum = v_sum + v_rem;
+    ->  set p_num = p_num DIV 10;
+    -> END WHILE;
+    -> SELECT v_sum AS "SUM OF DIGIT";
+    -> END ##
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> DELIMITER ;
+mysql> 
+mysql> CALL proc_SumofDigits(15);
++--------------+
+| SUM OF DIGIT |
++--------------+
+|            6 |
++--------------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> CALL proc_SumofDigits(26943);
++--------------+
+| SUM OF DIGIT |
++--------------+
+|           24 |
++--------------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+
+Q3)
+
+DELIMITER ##
+CREATE PROCEDURE proc_Fibbo(IN p_range INT)
+BEGIN
+	DECLARE v_second INT DEFAULT 1;
+	DECLARE v_first INT DEFAULT 0;
+	DECLARE v_next INT;
+	DECLARE v_i INT DEFAULT 0;
+	DECLARE v_s VARCHAR(255) DEFAULT "";
+	SET v_s = CONCAT(v_first, " ", v_second);
+	WHILE (v_i < p_range) DO
+	 SET v_next = v_first + v_second;
+	 SET v_s = CONCAT(v_s, " ", v_next);
+	 SET v_first = v_second;
+	 SET v_second = v_next;
+	 SET v_i = v_i + 1;
+	END WHILE;
+	SELECT v_s AS "FIBBONACCI SERIES";
+END ##
+DELIMITER ;
+
+mysql> DELIMITER ##
+mysql> CREATE PROCEDURE proc_Fibbo(IN p_range INT)
+    -> BEGIN
+    -> DECLARE v_second INT DEFAULT 1;
+    -> DECLARE v_first INT DEFAULT 0;
+    -> DECLARE v_next INT;
+    -> DECLARE v_i INT DEFAULT 0;
+    -> DECLARE v_s VARCHAR(255) DEFAULT "";
+    -> SET v_s = CONCAT(v_first, " ", v_second);
+    -> WHILE (v_i < p_range) DO
+    ->  SET v_next = v_first + v_second;
+    ->  SET v_s = CONCAT(v_s, " ", v_next);
+    ->  SET v_first = v_second;
+    ->  SET v_second = v_next;
+    ->  SET v_i = v_i + 1;
+    -> END WHILE;
+    -> SELECT v_s AS "FIBBONACCI SERIES";
+    -> END ##
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> DELIMITER ;
+mysql> 
+mysql> 
+mysql> CALL proc_Fibbo(10);
++------------------------------+
+| FIBBONACCI SERIES            |
++------------------------------+
+| 0 1 1 2 3 5 8 13 21 34 55 89 |
++------------------------------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> CALL proc_Fibbo(5);
++-------------------+
+| FIBBONACCI SERIES |
++-------------------+
+| 0 1 1 2 3 5 8     |
++-------------------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+
+Q4)
+
+DELIMITER ##
+CREATE PROCEDURE proc_EOseries(IN p_range INT)
+BEGIN
+	DECLARE v_first INT DEFAULT 1;
+	DECLARE e VARCHAR(200) DEFAULT "";
+	DECLARE o VARCHAR(200) DEFAULT "";
+	WHILE (v_first <= p_range) DO
+	 IF (v_first % 2 = 0) THEN
+	  SET e = CONCAT(e, " ",v_first, " ");
+	 ELSE 
+	  SET o = CONCAT(o, " ",v_first, " ");
+	 END IF;
+	 SET v_first = v_first + 1;
+	END WHILE;
+	SELECT e AS "Even No";
+	SELECT o AS "Odd No";
+END ##
+DELIMITER ;
+
+mysql> DELIMITER ##
+mysql> CREATE PROCEDURE proc_EOseries(IN p_range INT)
+    -> BEGIN
+    -> DECLARE v_first INT DEFAULT 1;
+    -> DECLARE e VARCHAR(200) DEFAULT "";
+    -> DECLARE o VARCHAR(200) DEFAULT "";
+    -> WHILE (v_first <= p_range) DO
+    ->  IF (v_first % 2 = 0) THEN
+    ->   SET e = CONCAT(e, " ",v_first, " ");
+    ->  ELSE 
+    ->   SET o = CONCAT(o, " ",v_first, " ");
+    ->  END IF;
+    ->  SET v_first = v_first + 1;
+    -> END WHILE;
+    -> SELECT e AS "Even No";
+    -> SELECT o AS "Odd No";
+    -> END ##
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> DELIMITER ;
+mysql> CALL proc_EOseries(20);
++--------------------------------------+
+| Even No                              |
++--------------------------------------+
+|  2  4  6  8  10  12  14  16  18  20  |
++--------------------------------------+
+1 row in set (0.00 sec)
+
++-------------------------------------+
+| Odd No                              |
++-------------------------------------+
+|  1  3  5  7  9  11  13  15  17  19  |
++-------------------------------------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+
+
+
+
+
+
+
+
+
+-------------------------------------------------
+ASSIGNMENT 11
+-------------------------------------------------
+
+Q1)
+
+DELIMITER ##
+CREATE FUNCTION final_cost(type VARCHAR(10), cost FLOAT)
+RETURNS FLOAT
+DETERMINISTIC
+BEGIN
+	DECLARE final_price FLOAT DEFAULT 0.0;
+	IF (type='Furn') THEN
+	 SET final_price = cost*1.12;
+	ELSEIF (type='Ele') THEN
+	 SET final_price = cost*1.18;
+	ELSEIF (type='Sta') THEN
+	 SET final_price = cost*1.06;
+	ELSE 
+	 SET final_price = cost*1;
+	END IF;
+	RETURN final_price;
+END ##
+DELIMITER ;
+
+
+mysql> DELIMITER ##
+mysql> CREATE FUNCTION final_cost(type VARCHAR(10), cost FLOAT)
+    -> RETURNS FLOAT
+    -> DETERMINISTIC
+    -> BEGIN
+    -> DECLARE final_price FLOAT DEFAULT 0.0;
+    -> IF (type='Furn') THEN
+    ->  SET final_price = cost*1.12;
+    -> ELSEIF (type='Ele') THEN
+    ->  SET final_price = cost*1.18;
+    -> ELSEIF (type='Sta') THEN
+    ->  SET final_price = cost*1.06;
+    -> ELSE 
+    ->  SET final_price = cost*1;
+    -> END IF;
+    -> RETURN final_price;
+    -> END ##
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> DELIMITER ;
+mysql> SELECT *,final_cost(Product_Type, cost) as "Total(GST)" FROM Product;
++------------+--------------+------------+-------+------------+
+| Product_ID | Product_Type | Name       | cost  | Total(GST) |
++------------+--------------+------------+-------+------------+
+|          1 | Furn         | Bed        | 30000 |      33600 |
+|          2 | Ele          | Fan        |  2000 |       2360 |
+|          3 | Ele          | AC         | 50000 |      59000 |
+|          4 | Sta          | NoteBook   |    65 |       68.9 |
+|          5 | Furn         | Cupboard   | 25500 |      28560 |
+|          6 | Ele          | Television | 22999 |    27138.8 |
+|          7 | Sta          | Bag        |  1249 |    1323.94 |
+|          8 | Sta          | Pen        |   120 |      127.2 |
++------------+--------------+------------+-------+------------+
+8 rows in set (0.00 sec)
+
+
+Q2)
+DELIMITER ##
+CREATE FUNCTION gross_salary(p_exp INT, p_salary FLOAT)
+RETURNS FLOAT
+DETERMINISTIC
+BEGIN
+	DECLARE f_salary FLOAT DEFAULT 0.0;
+	IF (p_exp < 3) THEN
+	 SET f_salary = p_salary;
+	ELSEIF (p_exp >= 3 AND p_exp < 8) THEN
+	 SET f_salary = p_salary*1.30 + p_salary*0.05;
+	ELSE
+	 SET f_salary = p_salary*1.5 + p_salary*0.05;
+	END IF;
+	RETURN f_salary;
+END ##
+DELIMITER ;
+
+
+mysql> DELIMITER ##
+mysql> CREATE FUNCTION gross_salary(p_exp INT, p_salary FLOAT)
+    -> RETURNS FLOAT
+    -> DETERMINISTIC
+    -> BEGIN
+    -> DECLARE f_salary FLOAT DEFAULT 0.0;
+    -> IF (p_exp < 3) THEN
+    ->  SET f_salary = p_salary;
+    -> ELSEIF (p_exp >= 3 AND p_exp < 8) THEN
+    ->  SET f_salary = p_salary*1.30 + p_salary*0.05;
+    -> ELSE
+    ->  SET f_salary = p_salary*1.5 + p_salary*0.05;
+    -> END IF;
+    -> RETURN f_salary;
+    -> END ##
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> DELIMITER ;
+mysql> 
+mysql> 
+mysql>  select *, gross_salary(experience, salary) as FinalSalary from employees;
++-----+---------------+----------+-----+------------+-------------+
+| eid | name          | salary   | age | experience | FinalSalary |
++-----+---------------+----------+-----+------------+-------------+
+|   1 | John Doe      | 10000000 |  23 |          2 |    10000000 |
+|   2 | Jane Smith    |    10000 |  19 |          1 |       10000 |
+|   3 | Alice Johnson |   100000 |  27 |          4 |      135000 |
+|   4 | Bob Brown     |    10000 |  32 |         17 |       15500 |
+|   5 | Charlie Davis |    56000 |  35 |         11 |       86800 |
+|   6 | David Wilson  |     5000 |  39 |         12 |        7750 |
+|   7 | Eve Williams  |    23000 |  43 |          7 |       31050 |
+|   8 | Frank Miller  |   120000 |  51 |          5 |      162000 |
++-----+---------------+----------+-----+------------+-------------+
+8 rows in set (0.00 sec)
+

@@ -1,0 +1,177 @@
+Q1) If the data entry has made for a negative cost then make is positive and insert it.
+
+DELIMITER ##
+create TRIGGER before_insert_Product
+BEFORE INSERT ON Product FOR EACH ROW
+BEGIN
+    IF(new.cost < 0)then
+     SET new.cost = new.cost * (-1);
+    END IF;
+END ##
+DELIMITER ;
+
+mysql> select * from Product;
++------------+--------------+------------+-------+
+| Product_ID | Product_Type | Name       | cost  |
++------------+--------------+------------+-------+
+|          1 | Furn         | Bed        | 30000 |
+|          2 | Ele          | Fan        |  2000 |
+|          3 | Ele          | AC         | 50000 |
+|          4 | Sta          | NoteBook   |    65 |
+|          5 | Furn         | Cupboard   | 25500 |
+|          6 | Ele          | Television | 22999 |
+|          7 | Sta          | Bag        |  1249 |
+|          8 | Sta          | Pen        |   120 |
++------------+--------------+------------+-------+
+8 rows in set (0.00 sec)
+
+mysql> DELIMITER ##
+mysql> create TRIGGER before_insert_Product
+    -> BEFORE INSERT ON Product FOR EACH ROW
+    -> BEGIN
+    ->     IF(new.cost < 0)then
+    ->      SET new.cost = new.cost * (-1);
+    ->     END IF;
+    -> END ##
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> DELIMITER ;
+mysql> INSERT INTO Product VALUES(9,"Sta","Scale",-20);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT * FROM Product;
++------------+--------------+------------+-------+
+| Product_ID | Product_Type | Name       | cost  |
++------------+--------------+------------+-------+
+|          1 | Furn         | Bed        | 30000 |
+|          2 | Ele          | Fan        |  2000 |
+|          3 | Ele          | AC         | 50000 |
+|          4 | Sta          | NoteBook   |    65 |
+|          5 | Furn         | Cupboard   | 25500 |
+|          6 | Ele          | Television | 22999 |
+|          7 | Sta          | Bag        |  1249 |
+|          8 | Sta          | Pen        |   120 |
+|          9 | Sta          | Scale      |    20 |
++------------+--------------+------------+-------+
+9 rows in set (0.00 sec)
+
+------------------------------------------------------------------------
+
+
+Q2 ) Make a backup of the data every time user enters new information in the table.
+
+
+
+mysql> CREATE TABLE BackUp
+    -> (
+    -> ID INT,
+    -> Type VARCHAR(5),
+    -> Name VARCHAR(20),
+    -> Cost INT
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+
+DELIMITER ##
+create TRIGGER after_insert_Product
+AFTER INSERT ON Product FOR EACH ROW
+BEGIN
+    INSERT INTO BackUp VALUES(new.Product_ID,new.Product_Type,new.Name,new.cost);
+END ##
+DELIMITER ;
+
+
+mysql> create TRIGGER after_insert_Product
+    -> AFTER INSERT ON Product FOR EACH ROW
+    -> BEGIN
+    ->     INSERT INTO BackUp VALUES(new.Product_ID,new.Product_Type,new.Name,new.cost);
+    -> END ##
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> DELIMITER ;
+mysql> INSERT INTO Product VALUES(15,"Furn","Sofa",-32000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SELECT * FROM BackUp;
++------+------+------+-------+
+| ID   | Type | Name | Cost  |
++------+------+------+-------+
+|   15 | Furn | Sofa | 32000 |
++------+------+------+-------+
+1 row in set (0.00 sec)
+
+------------------------------------------------------------------------
+
+Q3 ) Create a log file when user makes the changes in the cost of the product, record it.
+     
+DELIMITER ##
+create TRIGGER after_insert_ProductCost
+AFTER UPDATE ON Product FOR EACH ROW
+BEGIN
+    INSERT INTO Log VALUES(now(), old.cost, new.cost);
+END ##
+DELIMITER ;
+
+     
+mysql> DELIMITER ##
+mysql> create TRIGGER after_insert_ProductCost
+    -> AFTER UPDATE ON Product FOR EACH ROW
+    -> BEGIN
+    ->     INSERT INTO Log VALUES(now(), old.cost, new.cost);
+    -> END ##
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> DELIMITER ;
+mysql> UPDATE Product
+    -> SET cost = 70
+    -> WHERE Product_ID = 4;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from Log;
++------------+-----------+-----------+
+| date       | old_Price | new_Price |
++------------+-----------+-----------+
+| 2024-04-30 |        65 |        70 |
++------------+-----------+-----------+
+1 row in set (0.00 sec)
+
+---------------------------------------------------------------------
+
+
+Q4) After deleting any entry from table, create a variable that contains the type of product which has recently deleted.
+
+DELIMITER ##
+create TRIGGER after_delete_Product
+AFTER DELETE ON Product FOR EACH ROW
+BEGIN
+    SET @var = concat("You deleted ID - ", old.Product_ID);
+END ##
+DELIMITER ;
+
+mysql> DELIMITER ##
+mysql> create TRIGGER after_delete_Product
+    -> AFTER DELETE ON Product FOR EACH ROW
+    -> BEGIN
+    ->     SET @var = concat("You deleted ID - ", old.Product_ID);
+    -> END ##
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> DELIMITER ;
+mysql> DELETE FROM Product
+    -> WHERE Product_ID = 1;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select @var;
++--------------------+
+| @var               |
++--------------------+
+| You deleted ID - 1 |
++--------------------+
+1 row in set (0.00 sec)
+
+
+
+
+
+

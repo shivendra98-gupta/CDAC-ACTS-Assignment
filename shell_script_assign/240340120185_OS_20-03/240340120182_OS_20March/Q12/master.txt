@@ -1,0 +1,4 @@
+BatchCode|FacultyName|NumberOfStudents
+101| Swati| 0
+102| praphul| 0
+103| Atul| 0

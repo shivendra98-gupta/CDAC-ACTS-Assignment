@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Area of Circle</title>
+    <script src="./scripts/jquery.js"></script>
+    <script src="./scripts/Q17.js"></script>
+    <script>
+         $(document).ready(function(){ 
+            $("#display").click(function(){
+                 calcAreaCircum();
+         })
+
+         });
+    
+    </script>
+</head>
+<body>
+    <form style="border:1px solid blue;width:15%;height:50%;padding:10px;" >
+     Enter Radius :<input type="number" id="radius" name="radius"><br><br>
+     <button id="display" type="button">Display</button><br><br>
+     <div id="mydiv"></div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,143 @@
+Q1) Create a Procedure to pass the range of marks as input and print names of the students Who lies in the range;
+
+mysql> Select * from Student;
++------+-----------+---------+-------+------+
+| roll | name      | class   | marks | age  |
++------+-----------+---------+-------+------+
+|    1 | Aniket    | PG-DAC  | 88.59 |   23 |
+|    2 | Ankit     | PG-DAC  | 77.41 |   24 |
+|    3 | Lokesh    | PG-DAI  | 97.02 |   22 |
+|    4 | Sanskar   | PG-DAI  | 69.09 |   23 |
+|    5 | Nihal     | PG-DBDA | 81.89 |   23 |
+|    6 | Vaibhav   | PG-DAC  | 67.59 |   24 |
+|    7 | Shreeram  | PG-DAI  | 93.29 |   26 |
+|    8 | Shivendra | PG-VLSI | 75.08 |   25 |
++------+-----------+---------+-------+------+
+8 rows in set (0.00 sec)
+
+mysql> DELIMITER &&
+mysql> CREATE PROCEDURE Range_marks(IN range1 FLOAT,IN range2 FLOAT )
+    -> BEGIN
+    -> SELECT name FROM Student WHERE Marks BETWEEN range1 AND range2;
+    -> END
+    -> &&
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> 
+mysql> 
+mysql> DELIMITER ;
+mysql> 
+mysql> CALL Range_marks(70.00, 84.99);
++-----------+
+| name      |
++-----------+
+| Ankit     |
+| Nihal     |
+| Shivendra |
++-----------+
+3 rows in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+----------------------------------------------------------------------------------------
+
+Q2) Create a procedure to  display the summary table of the student record inlcuding sum,average,minimum,maximum of marks
+
+mysql> DELIMITER %%
+mysql> CREATE PROCEDURE summary_table()
+    -> BEGIN
+    -> SELECT SUM(marks) AS SUM, AVG(marks) AS AVERAGE, MIN(marks) AS MINIMUM, MAX(marks) AS MAXIMUM FROM Student;
+    -> END
+    -> %%
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> 
+mysql> DELIMITER ;
+mysql> CALL summary_table();
++-------------------+-------------------+---------+---------+
+| SUM               | AVERAGE           | MINIMUM | MAXIMUM |
++-------------------+-------------------+---------+---------+
+| 649.9599914550781 | 81.24499893188477 |   67.59 |   97.02 |
++-------------------+-------------------+---------+---------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+-----------------------------------------------------------------------------------------
+
+Q3) Create a procedure to input the Roll number of stduent and output the marks of the same.
+
+mysql> DELIMITER ##
+mysql> CREATE PROCEDURE Roll_N(IN Rollno INT, OUT mark FLOAT)
+    -> BEGIN
+    -> SELECT marks INTO mark FROM Student WHERE roll = Rollno;
+    -> END
+    -> ##
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> 
+mysql> DELIMITER ;
+mysql> 
+mysql> CALL Roll_N(4, @mark);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SELECT @mark;
++-------------------+
+| @mark             |
++-------------------+
+| 69.08999633789062 |
++-------------------+
+1 row in set (0.00 sec)
+
+------------------------------------------------------------------------------------
+
+Q4) Create a procedure to input the minimum and maximum roll number and Output the average of the marks in the given range of roll number.
+
+
+mysql> DELIMITER $$
+mysql> CREATE PROCEDURE Count_Stud()
+    -> BEGIN
+    -> SELECT COUNT(*) AS COUNTS FROM Student WHERE marks < 70;
+    -> END
+    -> $$
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> 
+mysql> DELIMITER ;
+mysql> CALL Count_Stud();
++--------+
+| COUNTS |
++--------+
+|      2 |
++--------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+------------------------------------------------------------------------------------
+
+Q5) Write a procedure to find the countof students whose marks are below 70%.
+
+
+
+mysql> DELIMITER @@
+mysql> CREATE PROCEDURE Avg_Roll(IN mini INT, IN maxi INT)
+    -> BEGIN
+    -> SELECT AVG(marks) AS AVERAGE FROM Student WHERE roll BETWEEN mini and maxi;
+    -> END
+    -> @@
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> 
+mysql> DELIMITER ;
+mysql> CALL Avg_Roll(1, 5);
++------------------+
+| AVERAGE          |
++------------------+
+| 82.7999984741211 |
++------------------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+

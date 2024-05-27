@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Scheduler</title>
+    <style>
+        h1{
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        function otherChoice(){
+            var reason = document.getElementById("reason").value;
+            if(reason === "Other"){
+                document.getElementById("other").style.display="block";
+            }
+            else{
+                document.getElementById("other").style.display="none";
+            }
+        }
+    </script>
+    <header>
+        <h1>Appointment Scheduler</h1>
+    </header>
+    <main>
+        <fieldset>
+            <legend>Personal Information</legend>
+            <br>
+            <label for="name">Name</label><br>
+            <input type="text" name="name" id="name"/><br><br>
+            <label for="mob">Telephone Number</label><br>
+            <input type="text" name="mob" id="mob"/><br><br>
+            <label for="email">E-mail address</label><br>
+            <input type="text" name="email" id="email"/><br><br>
+            <label for="dob">Date of birth</label><br>
+            <input type="date" name="dob" id="dob"/><br><br>
+        </fieldset>
+        <fieldset>
+            <legend>Appointment Request</legend>
+            <p>What is the reason for your visit?</p>
+            <select name="reason" id="reason" onchange="otherChoice()">
+                <option value="Head Ache">Head Ache</option>
+                <option value="Stomach Ache">Stomach Ache</option>
+                <option value="Knee Pain">Knee Pain</option>
+                <option value="Ankle Pain">Ankle Pain</option>
+                <option value="Back Pain">Back Pain</option>
+                <option value="Other">Other</option>
+            </select>
+            <input type="text" name="other" id="other" style="display: none;">
+            <br><br>
+            <label for="range">Current pain level</label><br>
+            <input type="range"> <br><br>
+            <label for="pd">Preferred Date</label><br>
+            <input type="date" name="pd" id="pd"><br><br>
+            <label for="pt">Preferred Time</label><br>
+            <input type="time" name="doa" id="doa"><br><br>
+        </fieldset>
+        <br>
+        <button type="submit">Submit</button>
+    </main>
+</body>
+</html>

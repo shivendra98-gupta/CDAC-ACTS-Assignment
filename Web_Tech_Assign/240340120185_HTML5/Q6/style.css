@@ -1,0 +1,29 @@
+#main{
+    padding: 10px; 
+    font-size: 30px;  
+    margin: 10px;
+    border-color: blue;
+}
+
+table{
+    width: 100%;
+}
+table td{
+    padding: 20px;
+}
+#button1{
+    /* position: absolute; */
+    right: 20px;
+    font-size: 30px;
+}
+#button2{
+    /* position: absolute; */
+    left: 20px;
+    font-size: 30px;
+}
+#age{
+    width: 30px;
+}
+select{
+    font-size: 20px;
+}

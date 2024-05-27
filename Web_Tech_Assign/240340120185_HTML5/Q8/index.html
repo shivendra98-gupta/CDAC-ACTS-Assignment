@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Form</title>
+    <style>
+        h4 {
+            display: inline;
+        }
+
+        header {
+            border: 2px solid red;
+            border-radius: 6px;
+            background-color: slateblue;
+            color: white;
+            text-align: center;
+        }
+
+        #instructions {
+            margin: 10px 10px 10px 50px;
+        }
+
+        form {
+            border: 2px solid red;
+            background-color: cyan;
+            border-radius: 10px;
+            padding: 20px
+        }
+
+        table td {
+            padding: 14px;
+        }
+
+        table {
+            float: left;
+        }
+
+        form #div1 {
+            margin-left: 500px;
+        }
+    </style>
+</head>
+
+<body style="font-size: 25px;">
+    <header>
+        <h4>Ayush Kumar ,</h4>
+        <h4>Yassar Warsi</h4>
+    </header>
+    <div id="instructions">
+        Note: all fields Marked by * are manditory<br>
+        Select all problems you faced while purchasing items<br>
+        To add more details use description box<br>
+    </div>
+    <hr color="red" size="2px" width="60%" align="left">
+
+    <form>
+        <div style="width:60%;"></div>
+        <fieldset>
+            <legend>Problems list</legend>
+            <input type="checkbox" name="problems" id="technical" value="technical">
+            <label for="technical">Technical(Like web site was down)</label><br>
+            <input type="checkbox" name="problems" id="available" value="available">
+            <label for="available">Product not available</label><br>
+            <input type="checkbox" name="problems" id="info" value="info">
+            <label for="info">Missing information about product</label><br>
+            <input type="checkbox" name="problems" id="stock" value="stock">
+            <label for="info">Stock update is not in time</label><br>
+        </fieldset>
+        </div>
+        <br><br>
+        <div>
+            <table>
+                <tr>
+                    <td><label for="unm"> Username: </label></td>
+                    <td><input type="text" name="unm" id="unm" required><span style="color:red">*</span><br></td>
+                </tr>
+                <tr>
+                    <td><label for="email">Email:</label></td>
+                    <td><input type="email" name="email" id="email" required><span style="color:red">*</span><br></td>
+                </tr>
+                <tr>
+                    <td>Location: </td>
+                    <td><select>
+                            <option value="Pune">Pune</option>
+                            <option value="Mumbai">Mumbai</option>
+                            <option value="Nashik">Nashik</option>
+                            <option value="Banglore">Banglore</option>
+                        </select><br>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="mob">Mobile No.</label></td>
+                    <td><input type="text" name="mob" id="mob"><br></td>
+                </tr>
+            </table>
+        </div>
+        <div id="div1">
+            Description :<br>
+            <textarea rows="5" cols="70"></textarea><br>
+
+            Notification :<br>
+            <textarea rows="5" cols="70"></textarea><br>
+
+            <button type="submit" name="btn" id="btn" value="submit" style="font-size: 25px;">Submit</button>
+        </div>
+    </form>
+    <br>
+    <a href="mailto:xyz@gmail.com?subject=Feedback for Website&cc:abc@gmail.com" style="margin: 10px;">Contact us</a>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+input {
+  padding: 2px;
+}
+.form {
+  margin: 10px auto;
+  width: 700px;
+}
+span {
+  display: inline-block;
+  width: 170px;
+  padding: 5px;
+}
+span:nth-child(3) {
+  color: red;
+  width: 200px;
+}
+.btn {
+  margin: 10px auto;
+  width: 300px;
+}
+button {
+  border: none;
+  width: 80px;
+  padding: 4px;
+  background-color: lightgreen;
+  border-radius: 8px;
+}

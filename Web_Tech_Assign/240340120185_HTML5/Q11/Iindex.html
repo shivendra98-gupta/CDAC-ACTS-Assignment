@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Details</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <center>
+        <fieldset>
+            <legend>Registration Deatils</legend>
+            <table>
+                <tr>
+                    <td class="left"><label for="uname">University:</label></td>
+                    <td><input type="text" name="uname" id="uname" /></td>
+                </tr>
+                <tr>
+                    <td class="left"><label for="institute">Institute:</label></td>
+                    <td><input type="text" name="institute" id="institute" /></td>
+                </tr>
+                <tr>
+                    <td class="left"><label for="branch">Branch:</label></td>
+                    <td>
+                        <select name="branch" id="branch">
+                            <option value="--select--">--select--</option>
+                            <option value="E&TC">E&TC</option>
+                            <option value="CSE">CSE</option>
+                            <option value="IT">IT</option>
+                            <option value="EEE">EEE</option>
+                            <option value="IE">IE</option>
+                            <option value="CE">CE</option>
+                            <option value="AI&DS">AI & DS</option>
+                            <option value="A&R">A & R</option>
+                            <option value="FE">FE</option>
+                            <option value="None">None</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="left"><label for="degree">Degree:</label></td>
+                    <td>
+                        <select name="degree" id="degree">
+                            <option value="--select--">--select--</option>
+                            <option value="BE">B.E/B.TECH</option>
+                            <option value="BCA">BCA</option>
+                            <option value="MCA">MCA</option>
+                        </select>
+                    </td>
+                    <td><input type="radio" name="pursuing" id="pursuing" />
+                    <label for="pursuing">Pursuing</label></td>
+                    <td><input type="radio" name="completed" id="completed" />
+                    <label for="completed">Completed</label></td>
+                </tr>
+                <tr>
+                    <td class="left"><label for="cpi">Average CPI:</label></td>
+                    <td><input type="number" name="upto" id="upto" /></td>
+                    <td><label for="upto">Upto</label></td>
+                    <td><input type="number" name="th" id="th" /></td>
+                    <td><label for="th">Th Semester</label></td>
+                </tr>
+                <tr>
+                    <td class="left"><label for="exp">Experience:</label></td>
+                    <td><input type="number" name="exp" id="exp" /></td>
+                    <td><label for="exp"></label></td>
+                </tr>
+                <tr>
+                    <td class="left"><label for="blog">Your Website Or Blog:</label></td>
+                    <td><input type="text" name="blog" id="blog" placeholder="http://"></td>
+                </tr>
+            </table>
+        </fieldset>
+        <div style="display: flex; margin: 20px; justify-content: center;">
+            <div class="circle">
+                 <div class="leftTriangle"></div>   
+            </div>
+           <p style="margin: auto 10px;">
+               Step 2
+           </p> 
+            <div class="circle">
+                <div class="rightTriangle"></div>
+            </div>
+        </div>
+    </center>
+
+</body>
+
+</html>

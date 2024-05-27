@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internet Usage Survey</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <fieldset id="main">
+        <h1>Internet Usage Survey</h1>
+        <form action="post">
+            <table>
+                <tr>
+                    <td colspan="2">
+                        <p style="margin: 0px;">This survey is being conducted to help identify the Internet usage patterns of our cutomers.</p>
+                        <p style="margin: 0px;">Please take a few moments to complete and submit this short form. Thank you for your cooperation.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p style="margin: 0px;">Whar type of Internet connection do you have?</p>
+                        <p style="margin: 0px;">(Select One)</p>
+                    </td>
+                    <td>
+                        <select name="conn" id="conn" size="2">
+                            <option value="Dial-up">Dial-up</option>
+                            <option value="DSL">DSL</option>
+                            <option value="High Speed Cable">High Speed Cable</option>
+                            <option value="Cable">Cable</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><p>What type of computer do you use most at home?</p></td>
+                    <td>
+                        <input type="radio" name="device" id="desktop"/>
+                        <label for="desktop">Desktop</label> &nbsp;&nbsp;
+                        <input type="radio" name="device" id="laptop"/>
+                        <label for="laptop">Laptop</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td><p>How would you describe your main reason for using the Internet?</p></td>
+                    <td>
+                        <input type="radio" name="reason" id="work"/> 
+                        <label for="work">To do work-related activities</label><br>
+                        <input type="radio" name="reason" id="school"/> 
+                        <label for="school">To do school-related activities</label><br>
+                        <input type="radio" name="reason" id="entertainment"/>
+                        <label for="entertainment">For entertainment purposes</label><br>
+                        <input type="radio" name="reason" id="other"/>
+                        <label for="other">Other activities</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <fieldset>
+                            <legend>Types of sites visited</legend>
+                            <p></p>
+                            <p style="margin: 0px;">What types of web sites do you access most often?</p>
+                            <p style="margin: 0px;">Check all that apply.</p> <br>
+                            <input type="checkbox" name="type" id="cbox1"/>
+                            <label for="cbox1">Self Improvement</label><br>
+                            <input type="checkbox" name="type" id="cbox2"/>
+                            <label for="cbox2">Entertainment</label><br>
+                            <input type="checkbox" name="type" id="cbox3"/>
+                            <label for="cbox3">News and Sports</label><br>
+                            <input type="checkbox" name="type" id="cbox4"/>
+                            <label for="cbox4">Reference</label><br>
+                            <input type="checkbox" name="type" id="cbox5"/>
+                            <label for="cbox5">Email</label><br>
+                        </fieldset>
+                    </td>
+                    <td>
+                        <fieldset>
+                            <legend>Time spent using Internet</legend>
+                            <p>During an average week, how long do you spend online?</p><br>
+                            <input type="radio" name="dur" id="c1"/>
+                            <label for="c1">0-3 Hours</label><br>
+                            <input type="radio" name="dur" id="c2"/>
+                            <label for="c2">4-6 Hours</label><br>
+                            <input type="radio" name="dur" id="c3"/>
+                            <label for="c3">7-10 Hours</label><br>
+                            <input type="radio" name="dur" id="c4"/>
+                            <label for="c4">11-14 Hours</label><br>
+                            <input type="radio" name="dur" id="c5"/>
+                            <label for="c5">15+ Hours</label><br>
+                        </fieldset>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <label for="comm">Please Comment on your opinions concerning Internet privacy and safety:</label><br>
+                        <textarea name="comm" id="comm" rows="8" cols="150"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="fname">First Name: </label>
+                        <input type="text" name="fname" id="fname" required placeholder="Enter first name here"/>
+                    </td>
+                    <td>
+                        <label for="lname">Last Name: </label>
+                        <input type="text" name="lname" id="lname" required placeholder="Enter last name here"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="age">Age: </label>
+                        <input type="text" name="age" id="age" style="width: 150px;" required pattern="^[0-9]{2}$" placeholder="Max. 2 Digit allowed"/>
+                    </td>
+                    <td>
+                        <label for="zip">Zip Code: </label>
+                        <input type="text" name="zip" id="zip" required pattern="^[0-9]{6}$" placeholder="Max. 6 digit allowed"/>
+                    </td>
+                </tr>
+                    <td align="right">
+                        <button type="submit" id="button1">Click to Submit</button>
+                    
+                    <td align="left">
+                        <button type="reset" id="button2">Clear Form</button>
+            </table>
+        </form>
+    </fieldset>
+</body>
+</html>
